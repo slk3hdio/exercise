@@ -21,7 +21,7 @@ def identity_basis(x):
 
 
 
-def multinomial_basis(x, feature_num=3):
+def multinomial_basis(x, feature_num=10):
     '''多项式基函数'''
     x = np.expand_dims(x, axis=1) # shape(N, 1)
     #==========
@@ -30,7 +30,7 @@ def multinomial_basis(x, feature_num=3):
     #==========
     return ret
 
-def gaussian_basis(x, feature_num=3):
+def gaussian_basis(x, feature_num=10):
     '''高斯基函数'''
     x = np.expand_dims(x, axis=1) # shape(N, 1)
     #==========
@@ -66,7 +66,7 @@ def main(x_train, y_train):
     phi_norm[:, 1:] = (phi_norm[:, 1:] - feature_mean) / feature_std
 
     rate = 0.01
-    epochs = 10000
+    epochs = 1000000
     w = np.zeros(phi_norm.shape[1])
     n_samples = phi_norm.shape[0]
     for _ in range(epochs):
