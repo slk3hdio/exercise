@@ -1,0 +1,60 @@
+function1:
+epoch=    0, train_loss=6.579946, test_loss=6.302077
+epoch=  500, train_loss=0.002721, test_loss=0.003289
+epoch= 1000, train_loss=0.001810, test_loss=0.002173
+epoch= 1500, train_loss=0.001320, test_loss=0.001553
+epoch= 2000, train_loss=0.001040, test_loss=0.001231
+epoch= 2500, train_loss=0.000834, test_loss=0.000986
+epoch= 3000, train_loss=0.000672, test_loss=0.000793
+epoch= 3500, train_loss=0.000546, test_loss=0.000640
+epoch= 4000, train_loss=0.000446, test_loss=0.000521
+epoch= 4500, train_loss=0.000366, test_loss=0.000428
+epoch= 4999, train_loss=0.000302, test_loss=0.000352
+train mse=0.000302
+test mse=0.000352
+test max abs error=0.059340
+test x=-1.960, target=-0.200, pred=-0.249
+test x=-0.957, target=-0.005, pred= 0.005
+test x=-0.047, target= 0.723, pred= 0.708
+test x= 1.197, target= 0.462, pred= 0.462
+test x= 1.987, target=-0.012, pred=-0.003
+function2:
+epoch=    0, train_loss=9.306095, test_loss=9.699008
+epoch=  500, train_loss=0.001552, test_loss=0.001691
+epoch= 1000, train_loss=0.000932, test_loss=0.000919
+epoch= 1500, train_loss=0.000818, test_loss=0.000761
+epoch= 2000, train_loss=0.000781, test_loss=0.000704
+epoch= 2500, train_loss=0.000763, test_loss=0.000675
+epoch= 3000, train_loss=0.000755, test_loss=0.000661
+epoch= 3500, train_loss=0.000750, test_loss=0.000653
+epoch= 4000, train_loss=0.000748, test_loss=0.000648
+epoch= 4500, train_loss=0.000746, test_loss=0.000644
+epoch= 4999, train_loss=0.000745, test_loss=0.000642
+train mse=0.000745
+test mse=0.000642
+test max abs error=0.089236
+test x=-1.960, target= 0.868, pred= 0.957
+test x=-0.957, target=-0.780, pred=-0.757
+test x=-0.047, target=-0.787, pred=-0.803
+test x= 1.197, target= 1.141, pred= 1.141
+test x= 1.987, target= 1.861, pred= 1.861
+function3:
+epoch=    0, train_loss=2.615991, test_loss=2.304029
+epoch=  500, train_loss=0.023145, test_loss=0.027104
+epoch= 1000, train_loss=0.004642, test_loss=0.006438
+epoch= 1500, train_loss=0.002064, test_loss=0.002524
+epoch= 2000, train_loss=0.001466, test_loss=0.001674
+epoch= 2500, train_loss=0.001249, test_loss=0.001437
+epoch= 3000, train_loss=0.001156, test_loss=0.001345
+epoch= 3500, train_loss=0.001108, test_loss=0.001302
+epoch= 4000, train_loss=0.001081, test_loss=0.001280
+epoch= 4500, train_loss=0.001063, test_loss=0.001267
+epoch= 4999, train_loss=0.001051, test_loss=0.001258
+train mse=0.001051
+test mse=0.001258
+test max abs error=0.196286
+test x=-1.960, target= 0.666, pred= 0.643
+test x=-0.957, target=-0.311, pred=-0.316
+test x=-0.047, target=-0.045, pred=-0.047
+test x= 1.197, target= 0.808, pred= 0.801
+test x= 1.987, target=-0.999, pred=-1.196
