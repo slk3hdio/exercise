@@ -1,6 +1,9 @@
 import tensorflow as tf
 import numpy as np
 
+x = np.random.normal(size = [10, 5])
+
+
 
 
 
