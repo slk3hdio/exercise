@@ -215,16 +215,19 @@ def gen_poem(begin_word):
 
     poem = begin_word
     word = begin_word
+    print("begin_word is: ", begin_word)
+    print(begin_word, end='')
     while word != end_token:
         input = np.array([word_int_map[w] for w in poem],dtype= np.int64)
         input = Variable(torch.from_numpy(input)).to(device)
         output = rnn_model(input, is_test=True)
         word = to_word(output.data.tolist()[-1], vocabularies)
         poem += word
-        # print(word)
+        print(word, end='')
         # print(poem)
         if len(poem) > 30:
             break
+    print()
     return poem
 
 
@@ -232,16 +235,28 @@ import os
 os.chdir(os.path.dirname(__file__))
 
 
-run_training()  # 如果不是训练阶段 ，请注销这一行 。 网络训练时间很长。
+# run_training()  # 如果不是训练阶段 ，请注销这一行 。 网络训练时间很长。
 
 
+print('=======================日=======================')
 pretty_print_poem(gen_poem("日"))
+# 日落西风起，日日风光入户开。
+# 莫道相思不知处，一枝红叶满庭枝。
+print('=======================红=======================')
 pretty_print_poem(gen_poem("红"))
+# 红递门户时。不知何处问归去，何处春风见钓翁。
+print('=======================山=======================')
 pretty_print_poem(gen_poem("山"))
+# 山川北望秦城汉，一曲山川不可寻。
+# 一径月光连海上，一声声断水声清。
+print('=======================夜=======================')
 pretty_print_poem(gen_poem("夜"))
+# 夜晓雁归来，水色风光入户开。
+# 莫道公卿不可得，一枝长见钓鱼船。
+print('=======================湖=======================')
 pretty_print_poem(gen_poem("湖"))
-pretty_print_poem(gen_poem("湖"))
-pretty_print_poem(gen_poem("湖"))
+# 湖洲归。天上人归远，门前雁去迟。不知何处去，相望一相思。
+print('=======================君=======================')
 pretty_print_poem(gen_poem("君"))
-
+# 君期
 
