@@ -4,7 +4,11 @@ import torch
 from torch.autograd import Variable
 import torch.optim as optim
 
-import rnn
+import rnn as rnn_lstm
+
+# Check if CUDA is available and set device
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Using device: {device}")
 
 start_token = 'G'
 end_token = 'E'
@@ -35,7 +39,8 @@ def process_poems1(file_name):
                 poems.append(content)
             except ValueError as e:
                 print("error")
-                pass
+                print(line)
+                raise e
     # 按诗的字数排序
     poems = sorted(poems, key=lambda line: len(line))
     # print(poems)
@@ -130,6 +135,9 @@ def run_training():
     torch.manual_seed(5)
     word_embedding = rnn_lstm.word_embedding( vocab_length= len(word_to_int) + 1 , embedding_dim= 100)
     rnn_model = rnn_lstm.RNN_model(batch_sz = BATCH_SIZE,vocab_len = len(word_to_int) + 1 ,word_embedding = word_embedding ,embedding_dim= 100, lstm_hidden_dim=128)
+    
+    # Move model to device
+    rnn_model = rnn_model.to(device)
 
     # optimizer = optim.Adam(rnn_model.parameters(), lr= 0.001)
     optimizer=optim.RMSprop(rnn_model.parameters(), lr=0.01)
@@ -148,8 +156,8 @@ def run_training():
             for index in range(BATCH_SIZE):
                 x = np.array(batch_x[index], dtype = np.int64)
                 y = np.array(batch_y[index], dtype = np.int64)
-                x = Variable(torch.from_numpy(np.expand_dims(x,axis=1)))
-                y = Variable(torch.from_numpy(y ))
+                x = Variable(torch.from_numpy(np.expand_dims(x,axis=1))).to(device)
+                y = Variable(torch.from_numpy(y )).to(device)
                 pre = rnn_model(x)
                 loss += loss_fun(pre , y)
                 if index == 0:
@@ -197,6 +205,9 @@ def gen_poem(begin_word):
     word_embedding = rnn_lstm.word_embedding(vocab_length=len(word_int_map) + 1, embedding_dim=100)
     rnn_model = rnn_lstm.RNN_model(batch_sz=64, vocab_len=len(word_int_map) + 1, word_embedding=word_embedding,
                                    embedding_dim=100, lstm_hidden_dim=128)
+    
+    # Move model to device
+    rnn_model = rnn_model.to(device)
 
     rnn_model.load_state_dict(torch.load('./poem_generator_rnn'))
 
@@ -206,7 +217,7 @@ def gen_poem(begin_word):
     word = begin_word
     while word != end_token:
         input = np.array([word_int_map[w] for w in poem],dtype= np.int64)
-        input = Variable(torch.from_numpy(input))
+        input = Variable(torch.from_numpy(input)).to(device)
         output = rnn_model(input, is_test=True)
         word = to_word(output.data.tolist()[-1], vocabularies)
         poem += word
@@ -216,6 +227,9 @@ def gen_poem(begin_word):
             break
     return poem
 
+
+import os
+os.chdir(os.path.dirname(__file__))
 
 
 run_training()  # 如果不是训练阶段 ，请注销这一行 。 网络训练时间很长。

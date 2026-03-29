@@ -45,6 +45,7 @@ class RNN_model(nn.Module):
         # here you need to define the "self.rnn_lstm"  the input size is "embedding_dim" and the output size is "lstm_hidden_dim"
         # the lstm should have two layers, and the  input and output tensors are provided as (batch, seq, feature)
         # ???
+        self.lstm = nn.LSTM(embedding_dim, lstm_hidden_dim, num_layers=2, batch_first=True)
 
 
 
@@ -61,7 +62,7 @@ class RNN_model(nn.Module):
         # here you need to put the "batch_input"  input the self.lstm which is defined before.
         # the hidden output should be named as output, the initial hidden state and cell state set to zero.
         # ???
-
+        output, (h_n, c_n) = self.lstm(batch_input)
 
 
 
