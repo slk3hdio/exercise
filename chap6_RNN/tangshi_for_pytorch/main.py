@@ -130,7 +130,7 @@ def run_training():
     poems_vector, word_to_int, vocabularies = process_poems1('./poems.txt')
     # 生成batch
     print("finish  loadding data")
-    BATCH_SIZE = 100
+    BATCH_SIZE = 512
 
     torch.manual_seed(5)
     word_embedding = rnn_lstm.word_embedding( vocab_length= len(word_to_int) + 1 , embedding_dim= 100)
